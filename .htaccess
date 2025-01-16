@@ -1,0 +1,91 @@
+<IfModule mod_rewrite.c>
+    ErrorDocument 405 https://www.mindforceresearch.com/404
+    RewriteEngine On
+    Options -Indexes
+
+    RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$2 [L,R=301]
+    RewriteRule ^(.*)\.index\.php$ /$2 [L,R=301]
+
+    RewriteCond %{THE_REQUEST} /index\.html? [NC]
+    RewriteRule ^(.*/)?index\.html?$ /$2 [R=301,L]
+
+    RewriteCond %{THE_REQUEST} /index\.php? [NC]
+    RewriteRule ^(.*/)?index\.php?$ /$2 [R=301,L]
+
+    RewriteCond %{THE_REQUEST} /index? [NC]
+    RewriteRule ^(.*/)?index?$ /$2 [R=301,L]
+
+
+    RewriteRule ^([a-zA-Z1-9_-]+)$ $1.php
+    RewriteRule ^([a-zA-Z1-9_-]+)/$ $1.php
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+
+    RewriteRule ^product/([a-zA-Z1-9_-]+)$ product.php?product=$1
+    RewriteRule ^product/([a-zA-Z1-9_-]+)/$ product.php?product=$1
+
+    RewriteRule ^contact/([a-zA-Z1-9_-]+)$ contact.php?msg=$1
+    RewriteRule ^contact/([a-zA-Z1-9_-]+)/$ contact.php?msg=$1
+
+
+
+    RewriteRule ^services/data-analysis/([a-zA-Z1-9_-]+)$ data-analysis.php?slug=$1
+    RewriteRule ^services/data-analysis/([a-zA-Z1-9_-]+)/$ data-analysis.php?slug=$1
+
+    RewriteRule ^cases-detail/([a-zA-Z1-9_-]+)$ cases-detail.php?slug=$1
+    RewriteRule ^cases-detail/([a-zA-Z1-9_-]+)/$ cases-detail.php?slug=$1
+
+    # RewriteRule ^services/data-processing/([a-zA-Z1-9_-]+)$ data-processing.php?slug=$1
+    # #RewriteRule ^services/data-processing/([a-zA-Z1-9_-]+)/$ data-processing.php?slug=$1
+
+
+    RewriteRule ^services/([a-zA-Z1-9_-]+)$ service.php?slug=$1
+    RewriteRule ^services/([a-zA-Z1-9_-]+)/$ service.php?slug=$1
+
+    RewriteRule ^articles/([a-zA-Z1-9_-]+)$ article.php?slug=$1
+    RewriteRule ^articles/([a-zA-Z1-9_-]+)/$ article.php?slug=$1
+
+    RewriteRule ^data-quality/([a-zA-Z1-9_-]+)$ data-quality.php?slug=$1
+    RewriteRule ^data-quality/([a-zA-Z1-9_-]+)/$ data-quality.php?slug=$1
+
+    RewriteRule ^survey-scriptings/([a-zA-Z1-9_-]+)$ survey-scriptings.php?slug=$1
+    RewriteRule ^survey-scriptings/([a-zA-Z1-9_-]+)/$ survey-scriptings.php?slug=$1
+
+    Redirect 302 https://mindforceresearch.com/index.php https://www.mindforceresearch.com
+
+    Redirect 302 https://www.mindforceresearch.com/index https://www.mindforceresearch.com
+
+    Redirect 302 https://www.mindforceresearch.com/index.html https://www.mindforceresearch.com
+
+    Redirect 301 /cases /case-study
+    Redirect 301 /survey-scriptings/standard-questions /survey-scriptings
+    Redirect 301 /cases-detail/whats-trending-in-cyber-security /case-study
+
+    RewriteRule ^cases-detail/([a-zA-Z1-9_-]+)$ cases-detail.php?slug=$1
+    RewriteRule ^cases-detail/([a-zA-Z1-9_-]+)/$ cases-detail.php?slug=$1
+
+    RewriteRule ^blogs/([a-zA-Z1-9_-]+)$ blogs.php?slug=$1
+    RewriteRule ^blogs/([a-zA-Z1-9_-]+)/$ blogs.php?slug=$1
+
+    RewriteRule ^([a-zA-Z1-9_-]+)/([a-zA-Z1-9_-]+)$ article.php?city=$1&slug=$2
+    RewriteRule ^([a-zA-Z1-9_-]+)/([a-zA-Z1-9_-]+)/$ article.php?city=$1&slug=$2
+
+    Redirect 302 /privacy_notice.html /privacy-policy
+    Redirect 302 /solutions.html /resources
+    Redirect 302 /careers.html /contact
+    Redirect 302 /privacy_notice.html /privacy-notice
+    Redirect 302 /cases-detail/what%27s-trending-in-cyber-security /case-study
+    Redirect 302 /key-driver-analysis https://www.mindforceresearch.com
+    Redirect 302 /privacy-policy /privacy-notice
+
+    ErrorDocument 404 https://www.mindforceresearch.com/404.php
+
+
+</IfModule>
+
+
+
+
